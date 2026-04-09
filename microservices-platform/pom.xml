@@ -17,11 +17,7 @@
         <module>gateway-service</module>
         <module>iam-service</module>
         <module>users-service</module>
-        <module>agenda-service</module>
-        <module>notifications-service</module>
-        <module>tramites-service</module>
-        <module>mobile-bff</module>
-        <module>web-bff</module>
+        <module>projects-service</module>
     </modules>
 
     <properties>
