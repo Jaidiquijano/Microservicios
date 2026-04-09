@@ -20,6 +20,8 @@
         <module>agenda-service</module>
         <module>notifications-service</module>
         <module>tramites-service</module>
+        <module>mobile-bff</module>
+        <module>web-bff</module>
     </modules>
 
     <properties>
