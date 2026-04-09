@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+
+  # ─── BASE DE DATOS: IAM (usuarios/auth) ───────────────────────────
+  db-iam:
+    image: postgres:16
+    container_name: lumara-db-iam
+    environment:
+      POSTGRES_DB: iam_db
+      POSTGRES_USER: lumara
+      POSTGRES_PASSWORD: lumara123
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_iam_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lumara -d iam_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── BASE DE DATOS: USERS (perfiles) ──────────────────────────────
+  db-users:
+    image: postgres:16
+    container_name: lumara-db-users
+    environment:
+      POSTGRES_DB: users_db
+      POSTGRES_USER: lumara
+      POSTGRES_PASSWORD: lumara123
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_users_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lumara -d users_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── BASE DE DATOS: AGENDA (eventos/exámenes/talleres) ────────────
+  db-agenda:
+    image: postgres:16
+    container_name: lumara-db-agenda
+    environment:
+      POSTGRES_DB: agenda_db
+      POSTGRES_USER: lumara
+      POSTGRES_PASSWORD: lumara123
+    ports:
+      - "5434:5432"
+    volumes:
+      - db_agenda_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lumara -d agenda_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── BASE DE DATOS: NOTIFICATIONS ─────────────────────────────────
+  db-notifications:
+    image: postgres:16
+    container_name: lumara-db-notifications
+    environment:
+      POSTGRES_DB: notifications_db
+      POSTGRES_USER: lumara
+      POSTGRES_PASSWORD: lumara123
+    ports:
+      - "5435:5432"
+    volumes:
+      - db_notifications_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lumara -d notifications_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── BASE DE DATOS: TRAMITES (becas/justificantes) ────────────────
+  db-tramites:
+    image: postgres:16
+    container_name: lumara-db-tramites
+    environment:
+      POSTGRES_DB: tramites_db
+      POSTGRES_USER: lumara
+      POSTGRES_PASSWORD: lumara123
+    ports:
+      - "5436:5432"
+    volumes:
+      - db_tramites_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lumara -d tramites_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_iam_data:
+  db_users_data:
+  db_agenda_data:
+  db_notifications_data:
+  db_tramites_data:
