@@ -1,16 +1,14 @@
 package com.aula.microservices.users.service;
 
+import java.util.List;
 
-
+import org.springframework.stereotype.Service;
 
 import com.aula.microservices.users.dto.CreateUserRequest;
 import com.aula.microservices.users.dto.UserResponse;
 import com.aula.microservices.users.entity.UserProfile;
 import com.aula.microservices.users.exception.ResourceNotFoundException;
 import com.aula.microservices.users.repository.UserProfileRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserProfileService {

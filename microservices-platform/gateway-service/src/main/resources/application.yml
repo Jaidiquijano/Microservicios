@@ -1,0 +1,87 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+
+      # ─── CORS global: permite llamadas desde el frontend web y la app Android ───
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:3000"    # React
+              - "http://localhost:4200"    # Angular
+              - "http://localhost:5173"    # Vite
+              - "http://10.0.2.2:8080"    # Android emulator apunta aquí
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+
+      # ─── RUTAS ────────────────────────────────────────────────────────────────
+      routes:
+
+        # IAM: login y registro son públicos (sin AuthFilter)
+        - id: iam-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/auth/**
+
+        # Users: protegido con JWT
+        - id: users-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - AuthFilter
+
+        # Agenda: protegido con JWT
+        - id: agenda-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/agenda/**
+          filters:
+            - AuthFilter
+
+        # Notifications: protegido con JWT
+        - id: notifications-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/notifications/**
+          filters:
+            - AuthFilter
+
+        # Tramites: protegido con JWT
+        - id: tramites-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/tramites/**
+          filters:
+            - AuthFilter
+
+# ─── CONFIG JWT (debe ser igual que en iam-service) ─────────────────────────
+app:
+  jwt:
+    secret: "lumara-super-secret-key-2025-microservices-platform-secure"
+  public-paths:
+    - /api/auth/login
+    - /api/auth/register
+    - /actuator/health
+
+# ─── ACTUATOR ───────────────────────────────────────────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
