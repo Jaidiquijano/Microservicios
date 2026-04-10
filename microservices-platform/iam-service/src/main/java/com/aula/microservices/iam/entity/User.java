@@ -49,7 +49,7 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Getters
+    //Getters
     public Long getId() { return id; }
     public String getEmail() { return email; }
     public String getPassword() { return password; }
@@ -58,7 +58,7 @@ public class User {
     public Boolean getActive() { return active; }
     public LocalDateTime getCreatedAt() { return createdAt; }
 
-    // Setters
+    //Setters
     public void setPassword(String password) { this.password = password; }
     public void setActive(Boolean active) { this.active = active; }
     public void setRole(Role role) { this.role = role; }
