@@ -1,5 +1,4 @@
 package com.aula.microservices.agenda.entity;
-
 public enum EventType {
     EXAMEN,
     ENTREGA,

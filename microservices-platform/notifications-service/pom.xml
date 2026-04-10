@@ -11,12 +11,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>agenda-service</artifactId>
-    <name>agenda-service</name>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <artifactId>notifications-service</artifactId>
+    <name>notifications-service</name>
 
     <dependencies>
 

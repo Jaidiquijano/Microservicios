@@ -1,4 +1,4 @@
-package com.aula.microservices.iam.config;
+package com.aula.microservices.agenda.config;
 
 import java.util.stream.Collectors;
 
@@ -9,21 +9,28 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.aula.microservices.common.exection.ResourceNotFoundException;
 import com.aula.microservices.common.response.ApiResponse;
 
-// Este archivo se encarga de controlar las excepciones
+// Este archivo se encarga de las excepciones
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiResponse<Void> handleIllegalArgument(IllegalArgumentException ex) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiResponse<Void> handleNotFound(ResourceNotFoundException ex) {
         return new ApiResponse<>(false, ex.getMessage(), null);
     }
 
     @ExceptionHandler(IllegalStateException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ApiResponse<Void> handleIllegalState(IllegalStateException ex) {
+    public ApiResponse<Void> handleForbidden(IllegalStateException ex) {
+        return new ApiResponse<>(false, ex.getMessage(), null);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiResponse<Void> handleBadRequest(IllegalArgumentException ex) {
         return new ApiResponse<>(false, ex.getMessage(), null);
     }
 

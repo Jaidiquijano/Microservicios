@@ -1,12 +1,12 @@
 server:
-  port: 8083
+  port: 8084
 
 spring:
   application:
-    name: agenda-service
+    name: notifications-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5434/agenda_db
+    url: jdbc:postgresql://localhost:5435/notifications_db
     username: lumara
     password: lumara123
 

@@ -18,6 +18,8 @@
         <module>iam-service</module>
         <module>users-service</module>
         <module>projects-service</module>
+        <module>agenda-service</module>
+        <module>notifications-service</module>
     </modules>
 
     <properties>
