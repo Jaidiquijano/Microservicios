@@ -9,7 +9,7 @@ spring:
     gateway:
 
       # ─── CORS global: permite llamadas desde el frontend web y la app Android ───
-      globalcors:
+      global-cors:
         cors-configurations:
           '[/**]':
             allowedOrigins:

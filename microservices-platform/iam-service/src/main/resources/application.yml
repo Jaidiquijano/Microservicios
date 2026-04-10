@@ -6,7 +6,7 @@ spring:
     name: iam-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/iam_db
+    url: jdbc:postgresql://localhost:5435/iam_db
     username: lumara
     password: lumara123
 

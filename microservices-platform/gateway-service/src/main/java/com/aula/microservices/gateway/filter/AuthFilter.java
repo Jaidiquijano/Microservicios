@@ -11,17 +11,6 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-
-/**
- * Filtro JWT que se aplica a todas las rutas protegidas del gateway.
- *
- * Qué hace:
- *  1. Comprueba que la petición lleva un header Authorization: Bearer <token>
- *  2. Valida que el token sea correcto y no esté expirado
- *  3. Si es válido, añade X-User-Email y X-User-Role como headers
- *     para que los microservicios sepan quién es el usuario
- *  4. Si no es válido, devuelve 401 Unauthorized directamente
- */
 @Component
 public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> {
 
